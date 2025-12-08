@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - Ikhwan Al Ghifari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radley:ital@0;1&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
+
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #000;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s; /* Transisi untuk Dark Mode */
+        }
+
+        /* ---------------------------------
+           1. DARK MODE STYLES
+           --------------------------------- */
+        body.dark-mode {
+            color: #f0f0f0;
+        }
+
+        body.dark-mode header {
+            background-color: rgba(0, 0, 0, 0.5); 
+            border-bottom: solid 5px #f0f0f0;
+            box-shadow: 0 18px 23px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode nav a {
+            color: #f0f0f0;
+        }
+
+        body.dark-mode nav a::after {
+            background: #09eede; /* Warna aksen baru Dark Mode */
+        }
+        
+        body.dark-mode .logo a {
+             /* Nonaktifkan background image yang mungkin tidak terbaca, gunakan warna solid */
+            background-image: none; 
+            color: #f0f0f0;
+            -webkit-text-fill-color: #f0f0f0;
+        }
+
+        body.dark-mode section {
+            background-color: rgba(0, 0, 0, 0.4); 
+            border: solid 6px rgba(255, 255, 255, 0.2);
+        }
+
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
+            color: #f0f0f0; 
+        }
+
+        body.dark-mode p, body.dark-mode .card-role {
+            color: #cccccc;
+        }
+        
+        body.dark-mode .project-item .tech-stack {
+            color: #09eede; /* Warna aksen dark mode untuk Tech Stack */
+        }
+
+        body.dark-mode .project-item, body.dark-mode .certificate-item {
+            background: rgba(50, 50, 50, 0.75); 
+            border: solid 2px rgba(255, 255, 255, 0.5);
+        }
+
+        body.dark-mode .project-item:hover { 
+            box-shadow: 0 15px 25px rgba(255, 255, 255, 0.3); 
+        }
+        
+        body.dark-mode .about-card {
+            background-color: rgba(5, 5, 5, 0.8);
+            border: 2px solid #333;
+            box-shadow: 0 20px 50px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .progress-fill {
+            background: linear-gradient(90deg, #09eede, #0979ee);
+        }
+
+        body.dark-mode .project-link, body.dark-mode button[type="submit"] {
+            background: #09eede; /* Warna tombol baru */
+            color: black;
+            font-weight: bold;
+        }
+        body.dark-mode .project-link.github-link {
+            background: #555; /* GitHub link di dark mode */
+            color: white;
+        }
+        body.dark-mode .project-link:hover, body.dark-mode button:hover {
+            box-shadow: 0 0 10px #09eede;
+        }
+
+        body.dark-mode input, body.dark-mode textarea {
+            background-color: rgba(50, 50, 50, 0.8);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        body.dark-mode footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: solid 2px #f0f0f0;
+            box-shadow: 0px -18px 20px rgb(255, 255, 255);
+            color: #f0f0f0;
+        }
+        body.dark-mode footer a { color: #09eede; }
+        /* ---------------------------------
+           END DARK MODE STYLES
+           --------------------------------- */
+
+        header {
+            background-color: rgba(255, 255, 255, 0);
+            backdrop-filter: blur(5px);
+            padding: 0.5rem 4rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 18px 23px rgba(0, 0, 0, 0.904);
+            border-radius: 0 0 6em 6em;
+            border-bottom: solid 5px rgb(0, 0, 0);
+        }
+
+        nav { 
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center; 
+        }
+        .logo a{
+            font-weight:bold;
+            font-size: 2.1rem;
+            background-image: url("text.png");  
+            background-size: cover;
+            background-position: center;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration:none;
+            animation: animateLogo 10s linear infinite;
+        }
+        @keyframes animateLogo {
+            to{
+                background-position-x : -1000px;
+            }
+        }
+
+        nav ul { list-style:none; display:flex; gap:1.5rem; font-weight:bold; transition: 0.3s; }
+        nav a { text-decoration:none; color:#000000; position:relative; transition:0.3s; font-size: 1.2rem; }
+        nav a::after {
+            content:""; position:absolute; bottom:-3px; left:0; width:0; height:3.5px; background:black; transition: 1.2s;
+        }
+        nav a:hover::after { width:100%; }
+
+        /* HAMBURGER MENU STYLING */
+        .menu-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s;
+        }
+        body.dark-mode .menu-toggle { color: #f0f0f0; }
+        
+        /* PROJECTS LIST UPGRADE */
+        .project-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .project-item h3 { margin-bottom: 0.3rem; }
+        .project-item .tech-stack {
+            font-size: 0.9rem;
+            color: #e5007b;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .project-item p { margin-bottom: 1rem; }
+        .project-links { margin-top: auto; } 
+        .project-link.github-link {
+            background: #333;
+            margin-left: 0.5rem;
+        }
+        
+        /* SECTIONS STYLING */
+        section {
+            background-color: rgba(255,255,255,0.25);
+            padding: 2rem;
+            margin: 2.3rem auto;
+            border-radius: 18px;
+            max-width: 850px;
+            border: solid 6px rgba(255,255,255,0.504);
+            backdrop-filter: blur(7px);
+            transition: background-color 0.3s, border 0.3s;
+        }
+        
+        h1,h2 { text-align:center; margin-bottom:1rem; }
+        p { font-family:"Radley"; font-weight:500; color:#111111c5; }
+
+        .skill-bar { margin:0.8rem 0; }
+        .skill-bar span { display:block; font-weight:600; margin-bottom:0.3rem; margin-left:7px; }
+        .progress { width:100%; background:rgba(255,255,255,0.2); height:20px; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.3); }
+        .progress-fill { height:100%; width:0; background:linear-gradient(90deg,#ff6a00,#ee0979); border-radius:10px; transition:width 2s ease-in-out; }
+
+        .projects-list { display:flex; flex-direction:column; gap:1.2rem; }
+        .project-item {
+            background: rgba(214,214,214,0.75); border-radius:16px; padding:1.2rem; border:solid 2px rgba(0,0,0,0.5); transition:0.3s; text-decoration:none;
+        }
+        .project-item:hover { transform:scale(1.02); box-shadow:0 15px 25px rgba(0,0,0,0.6); }
+        .project-link {
+            display:inline-block; margin-top:0.5rem; padding:0.5rem 1rem; background:black; color:white; border-radius:10px;
+            text-decoration:none; transition:0.3s; cursor:pointer;
+        }
+        .project-link:hover { box-shadow:0 0 10px black; }
+        
+        /* About Card */
+        #about { display:flex; justify-content:center; padding:4rem 1rem; perspective:1200px; }
+        .about-card {
+            position:relative; width:500px; padding:2.5rem 2rem; border-radius:25px;
+            backdrop-filter:blur(20px) saturate(180%); border:2px solid #fff;
+            box-shadow:0 20px 50px rgba(0,0,0,0.6); text-align:center; transition:transform 0.2s ease, box-shadow 0.2s ease; transform-style:preserve-3d;
+        }
+        .card-photo img {
+            width:140px; height:140px; border-radius:50%; object-fit:cover; border:4px solid transparent; margin-bottom:1rem;
+            transition:transform 1s ease; box-shadow:0 8px 20px rgba(0,0,0,0.6);
+        }
+        .card-photo img:hover { transform:scale(1.25); box-shadow:0 12px 30px rgba(0,0,0,0.83); }
+        .card-name { font-size:2.1rem; color:#000; margin-bottom:0.3rem; font-family: 'Pixelify Sans', sans-serif; font-weight:bold; }
+        .card-role { font-size:1.1rem; color:#333; margin-bottom:1.2rem; }
+        .card-desc { font-size:1rem; color:#111; line-height:1.6; margin-bottom:1.8rem; }
+
+        #achievements, #certificates {
+            background-color: rgba(255,255,255,0.25);
+            padding: 2rem;
+            margin: 1.5rem auto;
+            border-radius: 18px;
+            max-width: 850px;
+            border: solid 6px rgba(255,255,255,0.504);
+            backdrop-filter: blur(7px);
+        }
+
+        .certificate-item { background: rgba(214,214,214,0.75); border-radius:16px; padding:1rem; border:solid 2px rgba(0,0,0,0.5); }
+
+        #github {
+            padding: 2rem;
+            max-width:850px;
+            margin:1.5rem auto;
+            border-radius:18px;
+            background: rgba(255,255,255,0.25);
+            border: solid 6px rgba(255,255,255,0.504);
+            backdrop-filter: blur(7px);
+            text-align:center;
+        }
+        .github-card { display:flex; flex-direction:column; align-items:center; gap:2rem; }
+        .github-avatar { width:120px; height:120px; border-radius:50%; border:3px solid #fff; }
+        .github-link { display:inline-block; margin-top:0.5rem; padding:0.5rem 1rem; background:black; color:white; border-radius:10px; text-decoration:none; transition:0.3s; }
+        .github-repos ul { list-style:none; padding:0; margin:1rem 0; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
+        .github-repos li { background: rgba(0,0,0,0.1); padding:0.6rem 1rem; border-radius:10px; transition:0.3s; }
+        .github-repos li:hover { background: rgba(0,0,0,0.3); }
+        .github-repos a { text-decoration:none; color:black; font-weight:bold; }
+
+        form { display:flex; flex-direction:column; gap:1rem; }
+        input,textarea { background-color:rgba(255,255,255,0.5); padding:1rem; border:2px solid rgba(0,0,0,0.6); border-radius:10px; box-shadow:0 0 10px black; }
+        button { padding:0.8rem; background:black; color:white; border-radius:10px; border:none; cursor:pointer; font-weight:bold; transition:0.3s; }
+        button:hover { box-shadow:0 10px 20px black; transform:scale(1.05); }
+
+        /* FIXED CONTROLS LEFT BOTTOM */
+        #fixed-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px; 
+            z-index: 1000;
+            display: flex;
+            gap: 15px; 
+            align-items: center;
+        }
+        #music-player {
+            position: static; 
+            background:rgba(255,254,254,0.134); 
+            padding:10px; 
+            border-radius:25px;
+            border:solid 5px rgba(248,248,248,0.844); 
+            display:flex; 
+            align-items:center; 
+            gap:10px; 
+        }
+        #dark-mode-toggle {
+            background: rgba(255, 255, 255, 0.134);
+            backdrop-filter: blur(5px);
+            border: solid 5px rgba(248, 248, 248, 0.844);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            color: #000;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        #dark-mode-toggle:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        body.dark-mode #music-player,
+        body.dark-mode #dark-mode-toggle {
+            background: rgba(0, 0, 0, 0.3);
+            border: solid 5px rgba(50, 50, 50, 0.844);
+            color: #f0f0f0;
+        }
+        body.dark-mode #dark-mode-toggle:hover {
+            box-shadow: 0 0 15px #09eede;
+        }
+
+
+        #bg-video { position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-10; }
+
+        .popup {
+            position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); background:rgba(0,0,0,0.903);
+            color:#fff; padding:5rem 8rem; border-radius:16px; display:flex; flex-direction:column; align-items:center; gap:1rem;
+            z-index:10; text-align:center; box-shadow:0 15px 40px rgba(0,0,0,0.7); opacity:0; transition: transform 0.4s ease, opacity 0.4s ease;
+            font-family:'Poppins', sans-serif;
+        }
+        .popup.show { transform:translate(-50%,-50%) scale(1); opacity:1; }
+        
+        /* SCROLL TO TOP STYLES */
+        #scrollToTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 20px; /* Pindah ke paling bawah di kanan */
+            right: 20px;
+            z-index: 999;
+            border: none;
+            outline: none;
+            background-color: #000;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        #scrollToTopBtn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #e5007b;
+        }
+
+        /* FOOTER */
+        footer { 
+            text-align:center; padding:1rem; 
+            background-color:rgba(255, 255, 255, 0); 
+            border-top: solid 2px #000; 
+            border-radius: 6em 6em 0 0 ; 
+            backdrop-filter: blur(5px); 
+            box-shadow: 0px -18px 20px rgb(0, 0, 0); 
+            color:rgb(0, 0, 0); 
+            margin-top:2rem; 
+            font-weight:600; 
+            font-size: 1.2rem;
+        }
+        footer a { color: #000; text-decoration: none; font-weight: bold; margin: 0 0.5rem; }
+        footer a:hover { text-decoration: underline; }
+
+
+        /* MEDIA QUERIES UNTUK RESPONSIVITAS */
+        @media (max-width: 900px) {
+            header { padding: 0.5rem 2rem; border-radius: 0 0 3em 3em; }
+            section { max-width: 95%; padding: 1.5rem; margin: 1.5rem auto; }
+            .about-card { width: 100%; padding: 2rem 1.5rem; }
+            #fixed-controls { bottom: 10px; left: 10px; gap: 10px; }
+            #music-player { padding: 8px; }
+            #scrollToTopBtn { bottom: 10px; right: 10px; }
+        }
+
+        @media (max-width: 768px) {
+            nav { justify-content: space-between; }
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 100px; 
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                padding: 1rem 0;
+                border-bottom: 2px solid black;
+            }
+            nav ul.open {
+                display: flex; 
+            }
+            nav ul li {
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+            nav a { font-size: 1.5rem; }
+            .logo a { font-size: 1.8rem; }
+            .github-card { flex-direction: column; }
+            
+            body.dark-mode nav ul { background-color: rgba(0, 0, 0, 0.95); border-bottom: 2px solid #f0f0f0; }
+        }
+    </style>
+</head>
+<body>
+    
+
+<header>
+    <nav>
+        <div class="logo"><a href="#about">MY PORTFOLIO</a></div>
+        <div class="nav-controls">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <ul id="nav-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="about">
+        <div class="about-card">
+            <div class="card-photo">
+                <img src="Kucing Coding.jpg" alt="Ikhwan Al Ghifari">
+            </div>
+            <h2 class="card-name">Ikhwan Al Ghifari</h2>
+            <p class="card-role">Frontend Web Developer — Student</p>
+            <p class="card-desc">
+                Saya adalah pelajar dan pengembang web yang antusias dalam menciptakan
+                antarmuka digital yang modern, responsif, dan intuitif. Saya fokus menggunakan
+                <strong>HTML, CSS, dan JavaScript</strong> untuk membangun pengalaman web
+                yang bersih, cepat, dan menyenangkan bagi pengguna.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <div class="skill-bar" data-progress="90%"><span>HTML5</span><div class="progress"><div class="progress-fill"></div></div></div>
+            <div class="skill-bar" data-progress="85%"><span>CSS3</span><div class="progress"><div class="progress-fill"></div></div></div>
+            <div class="skill-bar" data-progress="75%"><span>JavaScript</span><div class="progress"><div class="progress-fill"></div></div></div>
+            <div class="skill-bar" data-progress="85%"><span>Python</span><div class="progress"><div class="progress-fill"></div></div></div>
+            <div class="skill-bar" data-progress="75%"><span>PHP</span><div class="progress"><div class="progress-fill"></div></div></div>
+            <div class="skill-bar" data-progress="80%"><span>Git & GitHub</span><div class="progress"><div class="progress-fill"></div></div></div>
+        </div>
+    </section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-list">
+            <article class="project-item">
+                <h3>Digital Clock <span class="tech-stack">[HTML, CSS, JS]</span></h3>
+                <p>Website ini menampilkan jam digital real-time yang responsif dan interaktif, fokus pada manipulasi DOM dan fungsi waktu dasar JavaScript.</p>
+                <div class="project-links">
+                    <a href="/JAM-DIGITAL/index.html" class="project-link" target="_blank">View Live</a>
+                    <a href="URL_REPO_CLOCK" class="project-link github-link" target="_blank">View Code</a> 
+                </div>
+            </article>
+            <article class="project-item">
+                <h3>Profile Card <span class="tech-stack">[HTML, CSS, JS]</span></h3>
+                <p>Implementasi desain kartu profil modern menggunakan Flexbox/Grid CSS, menunjukkan keahlian dalam tata letak dan animasi CSS.</p>
+                <div class="project-links">
+                    <a href="/PROFILE-CARD/index.html" class="project-link" target="_blank">View Live</a>
+                    <a href="URL_REPO_PROFILE_CARD" class="project-link github-link" target="_blank">View Code</a>
+                </div>
+            </article>
+            <article class="project-item">
+                <h3>Website Restaurant <span class="tech-stack">[HTML, CSS, JS, LocalStorage]</span></h3>
+                <p>Prototipe website restaurant lengkap dengan halaman login, navigasi menu, dan galeri, dibangun dengan fokus pada UI/UX yang menarik.</p>
+                <div class="project-links">
+                    <a href="/PROJECT-RESTAURANT/Log in/Tampilan_login.html" class="project-link" target="_blank">View Live</a>
+                    <a href="URL_REPO_RESTAURANT" class="project-link github-link" target="_blank">View Code</a>
+                </div>
+            </article>
+            <article class="project-item">
+                <h3>Task Manager <span class="tech-stack">[HTML, CSS, JS, LocalStorage]</span></h3>
+                <p>Aplikasi manajemen tugas berbasis web untuk menambahkan, mengedit, menghapus, dan menandai tugas selesai. Menggunakan LocalStorage untuk penyimpanan data.</p>
+                <div class="project-links">
+                    <a href="/TASK MANAGER/index.html" class="project-link" target="_blank">View Live</a>
+                    <a href="URL_REPO_TASK_MANAGER" class="project-link github-link" target="_blank">View Code</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <h2>Achievements</h2>
+        <div class="cards-container">
+            <div class="achievement-card">
+                <h3>🏆 Juara 1 Lomba Web Design 2024</h3>
+                <p>Membuat desain web kreatif dan interaktif.</p>
+            </div>
+            <div class="achievement-card">
+                <h3>🎖️ Sertifikat Frontend Web Developer</h3>
+                <p>Dicoding Academy, 2023</p>
+            </div>
+            <div class="achievement-card">
+                <h3>🏅 Peserta Hackathon Nasional 2023</h3>
+                <p>Bersama tim mengembangkan prototipe aplikasi.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates">
+        <h2>Certificates</h2>
+        <div class="cards-container">
+            <div class="certificate-card">
+                <h3>HTML & CSS Fundamentals</h3>
+                <p>Dicoding Academy, 2023</p>
+            </div>
+            <div class="certificate-card">
+                <h3>JavaScript Beginner</h3>
+                <p>FreeCodeCamp, 2023</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="github">
+        <h2>My GitHub</h2>
+        <div class="github-card">
+            <div class="github-profile">
+                <img src="https://avatars.githubusercontent.com/u/224000592?v=4" alt="GitHub Profile" class="github-avatar">
+                <h3>1khwannn</h3>
+                <p>Frontend Web Developer</p>
+                <a href="https://github.com/1khwannn" target="_blank" class="github-link">View GitHub</a>
+            </div>
+            <div class="github-stats">
+                <img src="https://github-readme-stats.vercel.app/api?username=1khwannn&show_icons=true&theme=radical" alt="GitHub Stats">
+            </div>
+            <div id="github-repos" class="github-repos">
+                <h4>Latest Repositories</h4>
+                <ul></ul>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" novalidate>
+            <label for="name">Nama Lengkap</label>
+            <input type="text" id="name" name="name" placeholder="Nama Anda">
+            <div class="error" id="name-error"></div>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="_replyto" placeholder="Email Anda">
+            <div class="error" id="email-error"></div>
+
+            <label for="message">Pesan</label>
+            <textarea id="message" name="message" placeholder="Tulis pesan Anda"></textarea>
+            <div class="error" id="message-error"></div>
+
+            <button type="submit">Kirim</button>
+        </form>
+    </section>
+</main>
+
+<div id="fixed-controls">
+    <button id="dark-mode-toggle" aria-label="Toggle Dark Mode" class="fixed-control-item">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <div id="music-player">
+        <span>🎶</span>
+        <button id="play-btn">Play</button>
+        <button id="mute-btn">Mute</button>
+    </div>
+</div>
+
+<audio id="bg-music" loop>
+    <source src="BGmusic.mp3" type="audio/mp3">
+</audio>
+
+<video id="bg-video" autoplay muted loop playsinline>
+    <source src="BGvideo.mp4" type="video/mp4">
+</video>
+
+<div id="success-popup" class="popup">
+    <p>Thank you for your message!</p>
+    <span id="close-popup">&times;</span>
+</div>
+
+<button id="scrollToTopBtn" aria-label="Scroll to Top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<footer>
+    &copy; 2025 Ikhwan Al Ghifari | 
+    <a href="mailto:emailanda@example.com">Email</a> |
+    <a href="https://github.com/1khwannn" target="_blank">GitHub</a> |
+    <a href="#">LinkedIn</a>
+</footer>
+
+<script>
+    // --- DARK MODE LOGIC ---
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+    const darkModeIcon = darkModeToggle.querySelector('i');
+
+    const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
+        darkModeIcon.classList.remove('fa-moon');
+        darkModeIcon.classList.add('fa-sun');
+    } else {
+        darkModeIcon.classList.remove('fa-sun');
+        darkModeIcon.classList.add('fa-moon');
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('dark-mode')) {
+            darkModeIcon.classList.remove('fa-moon');
+            darkModeIcon.classList.add('fa-sun');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            darkModeIcon.classList.remove('fa-sun');
+            darkModeIcon.classList.add('fa-moon');
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    });
+
+
+    // --- SCROLL TO TOP LOGIC ---
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            scrollToTopBtn.style.display = 'block';
+        } else {
+            scrollToTopBtn.style.display = 'none';
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // 2a. Hamburger Menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const navList = document.getElementById('nav-list');
+    
+    menuToggle.addEventListener('click', () => {
+        navList.classList.toggle('open');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    navList.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navList.classList.remove('open');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+            }
+        });
+    });
+
+
+    // 2b. Form Validation & Submission (Formspree Ready)
+    const form = document.getElementById('contact-form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+    const messageError = document.getElementById('message-error');
+    const popup = document.getElementById('success-popup');
+    const closePopup = document.getElementById('close-popup');
+
+    function validateEmail(email){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+
+    form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        nameError.textContent = emailError.textContent = messageError.textContent = "";
+        let valid = true;
+        
+        // 1. Client-Side Validation
+        if(nameInput.value.trim() === "") { nameError.textContent = "Please enter your name."; valid=false; }
+        if(!validateEmail(emailInput.value.trim())) { emailError.textContent = "Please enter a valid email."; valid=false; }
+        if(messageInput.value.trim() === "") { messageError.textContent = "Please enter your message."; valid=false; }
+
+        if(valid){
+            const formData = new FormData(form);
+            try {
+                // 2. Kirim Data ke Formspree Endpoint
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    form.reset(); 
+                    popup.classList.add('show'); 
+                    setTimeout(()=>popup.classList.remove('show'),3000); 
+                } else {
+                    alert('Oops! Terjadi masalah saat mengirim pesan Anda.');
+                }
+            } catch (error) {
+                console.error("Submission error:", error);
+                alert('Oops! Terjadi kesalahan jaringan. Coba lagi nanti.');
+            }
+        }
+    });
+
+    closePopup.addEventListener('click', () => popup.classList.remove('show'));
+
+
+    // 2c. Music Player, Skill Animation, dan Card Effect 
+    const music = document.getElementById("bg-music");
+    const playBtn = document.getElementById("play-btn");
+    const muteBtn = document.getElementById("mute-btn");
+    let playing = false;
+
+    playBtn.onclick = () => {
+        if(!playing){ music.play(); playBtn.textContent="Pause"; playing=true; }
+        else { music.pause(); playBtn.textContent="Play"; playing=false; }
+    };
+    muteBtn.onclick = () => { music.muted = !music.muted; muteBtn.textContent = music.muted ? "Unmute" : "Mute"; };
+
+    const skillBars = document.querySelectorAll('.skill-bar');
+    function animateSkills() {
+        const triggerBottom = window.innerHeight * 0.9;
+        skillBars.forEach(bar=>{
+            const barTop = bar.getBoundingClientRect().top;
+            if(barTop<triggerBottom && !bar.classList.contains('animated')){
+                bar.classList.add('animated');
+                const fill = bar.querySelector('.progress-fill');
+                const progress = bar.getAttribute('data-progress');
+                fill.style.width = progress;
+            }
+        });
+    }
+    window.addEventListener('scroll', animateSkills);
+    window.addEventListener('load', animateSkills);
+
+    const card = document.querySelector('.about-card');
+    let mouseX=0, mouseY=0, cardX=0, cardY=0;
+    card.addEventListener('mousemove', e=>{
+        const rect = card.getBoundingClientRect();
+        mouseX=((e.clientX-rect.left)/rect.width-0.5)*30;
+        mouseY=((e.clientY-rect.top)/rect.height-0.5)*30;
+    });
+    card.addEventListener('mouseleave', ()=>{ mouseX=0; mouseY=0; });
+    function animateCard() {
+        cardX+=(mouseX-cardX)*0.1;
+        cardY+=(mouseY-cardY)*0.1;
+        card.style.transform=`rotateX(${-cardY}deg) rotateY(${cardX}deg) translateY(-10px)`;
+        requestAnimationFrame(animateCard);
+    }
+    animateCard();
+
+    // 2d. GitHub API (Ditingkatkan dengan penanganan error)
+    const repoList = document.querySelector('#github-repos ul');
+    fetch('https://api.github.com/users/1khwannn/repos?sort=updated&per_page=5')
+    .then(res => {
+        if (!res.ok) throw new Error("Gagal memuat repositori");
+        return res.json();
+    })
+    .then(data => {
+        data.forEach(repo => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = repo.html_url;
+            a.target = "_blank";
+            const lang = repo.language ? ` (${repo.language})` : '';
+            const stars = repo.stargazers_count > 0 ? ` ⭐${repo.stargazers_count}` : '';
+            a.innerHTML = `${repo.name}${lang}${stars}`; 
+            li.appendChild(a);
+            repoList.appendChild(li);
+        });
+    })
+    .catch(err => {
+        console.error("Error fetching GitHub repos:", err);
+        const li = document.createElement('li');
+        li.textContent = "Unable to load repositories";
+        repoList.appendChild(li);
+    });
+
+</script>
+
+</body>
+</html>
