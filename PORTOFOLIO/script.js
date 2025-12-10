@@ -141,21 +141,22 @@
     window.addEventListener('scroll', animateSkills);
     window.addEventListener('load', animateSkills);
 
-    const card = document.querySelector('.about-card');
-    let mouseX=0, mouseY=0, cardX=0, cardY=0;
-    card.addEventListener('mousemove', e=>{
-        const rect = card.getBoundingClientRect();
-        mouseX=((e.clientX-rect.left)/rect.width-0.5)*30;
-        mouseY=((e.clientY-rect.top)/rect.height-0.5)*30;
-    });
-    card.addEventListener('mouseleave', ()=>{ mouseX=0; mouseY=0; });
-    function animateCard() {
-        cardX+=(mouseX-cardX)*0.1;
-        cardY+=(mouseY-cardY)*0.1;
-        card.style.transform=`rotateX(${-cardY}deg) rotateY(${cardX}deg) translateY(-10px)`;
-        requestAnimationFrame(animateCard);
-    }
-    animateCard();
+const card = document.querySelector(".about-card");
+
+card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateY = ((x / rect.width) - 0.5) * 50;
+    const rotateX = ((y / rect.height) - 0.5) * -50;
+
+    card.style.transform = ` rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+card.addEventListener("mouseleave", () => {
+    card.style.transform = "scale(1) rotateX(0) rotateY(0)";
+});
 
     const repoList = document.querySelector('#github-repos ul');
     fetch('https://api.github.com/users/1khwannn/repos?sort=updated&per_page=5')
