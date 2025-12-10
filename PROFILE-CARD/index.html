@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KARTU PROFIL - Ikhwan</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="stars"></canvas>
+
+    <div class="card">
+      <div class="profile-pic">
+        <img src="Kucing Coding.jpg" alt="Ikhwan" />
+        <div class="holo-ring"></div>
+        <div class="holo-ring"></div>
+        <div class="holo-ring"></div>
+      </div>
+      <h2 class="glitch">Ikhwan Al Ghifari</h2>
+      <p id="typing"></p>
+
+      <a href="#" class="btn"><i class="fas fa-folder-open"></i> Portofolio</a>
+      <a href="https://www.youtube.com" class="btn"
+        ><i class="fab fa-youtube"></i> YouTube</a
+      >
+      <a href="https://www.tiktok.com" class="btn"
+        ><i class="fab fa-tiktok"></i> TikTok</a
+      >
+      <a href="https://www.instagram.com/1khwannnn_/" class="btn"
+        ><i class="fab fa-instagram"></i> Instagram</a
+      >
+      <a href="mailto:ikhwan192009@gmail.com" class="btn"
+        ><i class="fas fa-envelope"></i> Email</a
+      >
+      <a href="#" class="btn"><i class="fab fa-facebook"></i> Facebook</a>
+    </div>
+
+    <button id="themeSwitcher">TEMA</button>
+    <canvas id="holoLines" class="holo-line"></canvas>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+
+<!-- 
+body::before {
+content:"";
+position:fixed;
+top:0; left:0;
+width:100%; height:100%;
+background:linear-gradient(120deg,#ff0066,#6600ff,#00eaff,#ff9100);
+background-size:400% 400%;
+filter:blur(80px);
+z-index:-10;
+animation:bgmove 18s ease infinite;
+}
+@keyframes bgmove {
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;} -->
