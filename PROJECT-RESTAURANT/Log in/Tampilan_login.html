@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - SAVORA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/PROJECT-RESTAURANT/Log in/Tampilan_login.css">
+  </head>
+  <body>
+    <div class="background-img"></div>
+    <div class="overlay"></div>
+
+    <div id="auth-card">
+      <div class="logo">
+        <img src="/PROJECT-RESTAURANT/Gambar/savora.jpg" alt="Logo Savora" />
+      </div>
+
+      <h1 style="word-spacing: 7px">S A V O R A</h1>
+      <p>Masuk ke dunia kemewahan dan rasa</p>
+
+      <form id="login-form">
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input
+            type="text"
+            id="username"
+            placeholder="Nama Pengguna"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input
+            type="password"
+            id="password"
+            placeholder="Kata Sandi"
+            required
+          />
+        </div>
+        <button type="submit">Masuk</button>
+      </form>
+
+      <div class="footer-text">
+        <p>
+          Belum punya akun?
+          <a href="/PROJECT-RESTAURANT/Register/Tampilan_register.html" class="toggle-link"
+            >Daftar di sini</a
+          >
+        </p>
+      </div>
+    </div>
+    <script src="/PROJECT-RESTAURANT/Log in/Tampilan_login.js"></script>
+  </body>
+</html>
