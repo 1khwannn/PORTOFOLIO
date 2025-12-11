@@ -15,9 +15,9 @@
         <input type="text" id="task-input" placeholder="Judul Tugas " required>
         <textarea id="task-description" placeholder=" Jelaskan Detail Tugas"></textarea>
         <div class="form-bottom-row">
-            <label for="task-deadline">📅 Deadline:</label>
+            <label for="task-deadline"><i class="far fa-calendar-alt"></i> Deadline:</label>
             <input type="date" id="task-deadline">
-            <label for="task-priority">🔥 Prioritas:</label>
+            <label for="task-priority"><i class="fas fa-fire-alt"></i> Prioritas :</label>
             <select id="task-priority">
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
@@ -28,25 +28,32 @@
     </form>
 
     <hr>
-
-    <div class="filter-controls">
-        <label for="filter-status">Filter Status:</label>
-        <select id="filter-status">
-            <option value="all">Semua</option>
-            <option value="pending">Pending</option>
-            <option value="completed">Selesai</option>
-        </select>
-        <label for="filter-priority">Filter Prioritas:</label>
-        <select id="filter-priority">
-            <option value="all">Semua</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-        </select>
+    
+    <div class="filter-controls-group">
+        <div class="filter-controls">
+            <label for="filter-status">Filter Status:</label>
+            <select id="filter-status">
+                <option value="all">Semua</option>
+                <option value="pending">Pending</option>
+                <option value="completed">Selesai</option>
+            </select>
+            <label for="filter-priority">Filter Prioritas:</label>
+            <select id="filter-priority">
+                <option value="all">Semua</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+        </div>
+        <div class="clear-buttons">
+             <button id="clear-completed-btn" class="action-button"><i class="fas fa-check-double"></i> Clear Selesai</button>
+            <button id="clear-all-btn" class="action-button delete-btn"><i class="fas fa-trash-alt"></i> Clear Semua</button>
+        </div>
     </div>
 
+
     <div id="progress-container">
-        <h3>Progres Pengerjaan</h3>
+        <h3>Task Progress</h3>
         <div class="progress-bar-container">
             <div id="progress-bar"></div>
         </div>
@@ -59,6 +66,5 @@
 </div>
 
 <script src="script.js"></script>
-</script>
 </body>
 </html>
