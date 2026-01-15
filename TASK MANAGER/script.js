@@ -47,7 +47,7 @@ function addTask(e) {
     saveTasksToStorage(tasks);
     resetForm();
     loadTasks();
-    showPopup("Tugas Baru Ditambahkan! 🚀");
+    showPopup("Tugas Baru Ditambahkan!");
 }
 
 function resetForm() {
@@ -189,7 +189,7 @@ function toggleComplete(id) {
     loadTasks();
 
     if (t.completed) {
-        showPopup("Tugas Selesai! 🎉");
+        showPopup("Tugas Selesai!");
     } else {
         showPopup("Tugas Dibuka Kembali.");
     }
@@ -285,7 +285,6 @@ function updateProgress(tasks) {
 
     const colorStart = percent < 50 ? '#ffc107' : '#20c997';
     const colorEnd = percent < 50 ? '#dc3545' : '#198754';
-    progressBar.style.background = `linear-gradient(90deg, ${colorStart}, ${colorEnd})`;
     
     progressBar.style.width = `${percent}%`;
     progressBar.textContent = `${percent}%`;

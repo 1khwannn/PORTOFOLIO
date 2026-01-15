@@ -1,6 +1,6 @@
 :root {
     --color-primary: #f2f4f696;
-    --color-success: #28A745;
+    --color-success: #00ff3c;
     --color-warning: #FFC107;
     --color-danger: #DC3545;
     --color-text-dark: #000000;
@@ -166,7 +166,7 @@ hr {
 #progress-bar {
     height: 100%;
     width: 0;
-    background: linear-gradient(90deg, #015904, #15ff00);
+    background: linear-gradient(90deg,green, #00900a, #1aff00);
     border-radius: 10px;
     transition: width 0.5s ease-in-out;
     display: flex;
